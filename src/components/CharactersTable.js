@@ -19,7 +19,6 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 
-import { fetchCharacters } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -40,6 +39,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+
+import { fetchCharacters } from "@/lib/utils";
 
 export const columns = [
   {
@@ -123,7 +124,7 @@ export const columns = [
 ];
 
 export function CharactersTable() {
-  const appStatus = useSelector((state) => state.app);
+  const starWarsCharacters = useSelector((state) => state.starWars.characters);
   const dispatch = useDispatch();
 
   const [sorting, setSorting] = useState([]);
@@ -132,7 +133,7 @@ export function CharactersTable() {
   const [rowSelection, setRowSelection] = useState({});
 
   let table = useReactTable({
-    data: appStatus.starWarsCharacters,
+    data: starWarsCharacters,
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
@@ -154,8 +155,9 @@ export function CharactersTable() {
     console.log("🔴 Component mounted");
     fetchCharacters(dispatch);
     console.log("🟡 fetchCharacters called");
-  }, []);
+  }, [dispatch]);
 
+  console.log("🔴 Starting component");
   return (
     <div className="w-full">
       <div className="flex items-center py-4">

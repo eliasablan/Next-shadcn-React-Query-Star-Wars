@@ -1,6 +1,6 @@
 import { Poppins } from "next/font/google";
 import "../styles/globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 import Header from "@/components/Header";
 
 const poppins = Poppins({

@@ -2,7 +2,7 @@ import axios from "axios";
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-import { updateStarWarsCharacters } from "@/store/swSlice";
+import { updateCharacters } from "@/reducers/starWarsSlice";
 
 export function cn(...inputs) {
   return twMerge(clsx(inputs));

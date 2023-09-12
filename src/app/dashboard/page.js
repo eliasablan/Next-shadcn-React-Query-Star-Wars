@@ -1,4 +1,3 @@
-"use client";
 import { CharactersTable } from "@/components/CharactersTable";
 
 export default function Page() {
