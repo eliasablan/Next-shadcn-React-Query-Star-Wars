@@ -10,32 +10,23 @@ export default function Page() {
       {Array.from(Array(50), (_, i) => i + 1).map((i) => {
         return (
           <div className="block" key={i}>
-            <Button className="m-2 inline" variant="default">
-              Click
-            </Button>
-
-            <Button className="m-2 inline" variant="destructive">
-              Click
-            </Button>
-
-            <Button className="m-2 inline" variant="outline">
-              Click
-            </Button>
-
-            <Button className="m-2 inline" variant="secondary">
-              Click
-            </Button>
-
-            <Button className="m-2 inline" variant="ghost">
-              Click
-            </Button>
-
-            <Button className="m-2 inline" variant="link">
-              Click
-            </Button>
+            <VariantButton variant="default" />
+            <VariantButton variant="destructive" />
+            <VariantButton variant="outline" />
+            <VariantButton variant="secondary" />
+            <VariantButton variant="ghost" />
+            <VariantButton variant="link" />
           </div>
         );
       })}
     </Fragment>
+  );
+}
+
+function VariantButton({ variant }) {
+  return (
+    <Button className="m-2 inline" variant={variant}>
+      Click
+    </Button>
   );
 }
