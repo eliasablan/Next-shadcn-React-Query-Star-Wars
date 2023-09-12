@@ -1,6 +1,7 @@
 import axios from "axios";
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import useSWR from "swr";
 
 import { updateCharacters } from "@/reducers/starWarsSlice";
 
@@ -23,9 +24,8 @@ export async function fetchCharacters(dispatch) {
     });
     console.log("🟡 characters fetched");
     if (tableData) {
-      console.log("🟡 1");
-      dispatch(updateStarWarsCharacters(tableData));
-      console.log("🟢store SWcharacters updated", tableData);
+      dispatch(updateCharacters(tableData));
+      console.log("🟢 store SWcharacters updated", tableData);
     }
   } catch (error) {
     console.log(error);
@@ -35,4 +35,18 @@ export async function fetchCharacters(dispatch) {
 async function fetchPlanet(url) {
   const response = await axios.get(url);
   return response.data.name;
+}
+
+export function useSWCharacters() {
+  const fetcher = (...args) => fetch(...args).then((res) => res.json());
+  const { data, error, isLoading } = useSWR(
+    "https://swapi.dev/api/people/",
+    fetcher
+  );
+
+  return {
+    data,
+    isLoading,
+    isError: error,
+  };
 }
