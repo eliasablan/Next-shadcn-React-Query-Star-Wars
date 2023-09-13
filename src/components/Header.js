@@ -11,7 +11,7 @@ import { NavigationDropdown } from "./NavigationDropdown";
 
 const Header = () => {
   return (
-    <nav className={`max-w-5xl m-auto w-full px-4 py-2 ${styles.stickyheader}`}>
+    <nav className={`max-w-5xl m-auto w-full px-4 py-2 border border-input bg-transparent shadow-sm ${styles.stickyheader}`}>
       <div className="flex items-center gap-8 justify-between">
         <div>
           <Link href="/" className="text-2xl font-semibold hover:opacity-90">
