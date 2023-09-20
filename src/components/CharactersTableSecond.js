@@ -149,7 +149,9 @@ export function CharactersTableSecond({ charactersData }) {
 
   const refreshData = async () => {
     console.log("refreshData called");
-    const fetchData = await fetch("http://localhost:3000/api/hello/");
+    const fetchData = await fetch(
+      "http://localhost:3000/api/starwars/characters/"
+    );
     const charactersBody = await fetchData.json();
     setCharacters(charactersBody.data.results);
     console.log("characters", characters);

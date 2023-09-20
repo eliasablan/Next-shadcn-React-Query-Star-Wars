@@ -1,7 +1,9 @@
 import { CharactersTableSecond } from "@/components/CharactersTableSecond";
 
 export default async function Page() {
-  const fetchData = await fetch("http://localhost:3000/api/hello/");
+  const fetchData = await fetch(
+    "http://localhost:3000/api/starwars/characters/"
+  );
   const charactersBody = await fetchData.json();
   const characters = charactersBody.data;
 
