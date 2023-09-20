@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
 
-import AppProvider from "@/components/providers/AppProvider";
+import AppProvider from "@/components/providers/reduxProviders";
 
 export const metadata = {
   title: "Dashboard",
