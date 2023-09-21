@@ -32,7 +32,7 @@ export async function fetchCharacters(dispatch) {
   }
 }
 
-async function fetchPlanet(url) {
+export async function fetchPlanet(url) {
   const response = await axios.get(url);
   return response.data.name;
 }
@@ -50,3 +50,13 @@ export function useSWCharacters() {
     isError: error,
   };
 }
+
+const getCharacters = async () => {
+  const fetchCharactersData = await fetch(
+    "http://localhost:3000/api/starwars/characters"
+  );
+  const characters = await fetchCharactersData.json();
+  return characters.data;
+};
+
+export { getCharacters };
