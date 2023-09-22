@@ -52,11 +52,19 @@ export function useSWCharacters() {
 }
 
 const getCharacters = async () => {
-  const fetchCharactersData = await fetch(
-    "http://localhost:3000/api/starwars/characters"
-  );
-  const characters = await fetchCharactersData.json();
-  return characters.data;
+  const url = new URL("https://swapi.dev/api/people/");
+  const response = await fetch(url);
+  const characters = await response.json();
+
+  return characters;
 };
 
-export { getCharacters };
+const getPlanet = async (homeworldId) => {
+  const url = new URL(`https://swapi.dev/api/planets/${homeworldId}`);
+  const response = await fetch(url);
+  const planet = await response.json();
+
+  return planet;
+};
+
+export { getCharacters, getPlanet };
