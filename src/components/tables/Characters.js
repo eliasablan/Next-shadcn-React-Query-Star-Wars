@@ -6,10 +6,6 @@ import {
   DotsHorizontalIcon,
 } from "@radix-ui/react-icons";
 import {
-  ColumnDef,
-  ColumnFiltersState,
-  SortingState,
-  VisibilityState,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
@@ -17,6 +13,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { useQuery } from "@tanstack/react-query";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -39,9 +36,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import { useQuery } from "@tanstack/react-query";
-
 import { getCharacters } from "@/lib/utils";
+import HomeworldRow from "@/components/tables/HomeworldRow";
 
 export const columns = [
   {
@@ -81,9 +77,7 @@ export const columns = [
         </Button>
       );
     },
-    cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("homeworld")}</div>
-    ),
+    cell: ({ row }) => <HomeworldRow row={row} />,
   },
   {
     accessorKey: "birth_year",
@@ -129,7 +123,6 @@ const CharactersTable = () => {
     queryKey: ["hydrate-characters"],
     queryFn: getCharacters,
   });
-  console.log("data", data);
 
   const [sorting, setSorting] = useState([]);
   const [columnFilters, setColumnFilters] = useState([]);
@@ -137,7 +130,7 @@ const CharactersTable = () => {
   const [rowSelection, setRowSelection] = useState({});
 
   let table = useReactTable({
-    data: data.results,
+    data: data ? data.results : [],
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
@@ -155,7 +148,6 @@ const CharactersTable = () => {
     },
   });
 
-  console.log("🔴 Starting component");
   return (
     <div className="w-full">
       <div className="flex items-center py-4">
@@ -270,6 +262,6 @@ const CharactersTable = () => {
       </div>
     </div>
   );
-}
+};
 
 export default CharactersTable;
