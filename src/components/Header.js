@@ -7,7 +7,6 @@ import styles from "../styles/Home.module.css";
 
 import { ModeToggle } from "@/components/ButtonThemeToggle";
 import { buttonVariants } from "@/components/ui/button";
-import { NavigationDropdown } from "./NavigationDropdown";
 
 const Header = () => {
   return (
@@ -17,19 +16,16 @@ const Header = () => {
       <div className="flex items-center gap-8 justify-between">
         <div>
           <Link href="/" className="text-2xl font-semibold hover:opacity-90">
-            Logo
+            Star Wars Tables
           </Link>
         </div>
         <div className="flex items-center gap-4">
-          <Link
-            href="features"
-            className={buttonVariants({ variant: "ghost" })}
-          >
-            Features
+          <Link href="#" className={buttonVariants({ variant: "ghost" })}>
+            Films
           </Link>
 
-          <Link href="pricing" className={buttonVariants({ variant: "ghost" })}>
-            Pricing
+          <Link href="#" className={buttonVariants({ variant: "ghost" })}>
+            Planets
           </Link>
 
           <Link
@@ -39,14 +35,26 @@ const Header = () => {
             Characters
           </Link>
 
-          <Link
-            href="dashboard"
-            className={buttonVariants({ variant: "destructive" })}
+          {/* <Link
+            href="characters"
+            className={buttonVariants({ variant: "ghost" })}
           >
-            Dashboard
+            Vechicles
           </Link>
 
-          <NavigationDropdown />
+          <Link
+            href="characters"
+            className={buttonVariants({ variant: "ghost" })}
+          >
+            Starships
+          </Link>
+
+          <Link
+            href="characters"
+            className={buttonVariants({ variant: "ghost" })}
+          >
+            Species
+          </Link> */}
 
           <ModeToggle />
         </div>
