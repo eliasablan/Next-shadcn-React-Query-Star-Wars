@@ -46,7 +46,7 @@ const Header = () => {
 
   return (
     <nav
-      className={`max-w-5xl m-auto w-full px-4 py-2 border border-input bg-transparent shadow-sm ${styles.stickyheader}`}
+      className={`max-w-5xl m-auto w-full px-4 py-2 border border-input shadow-sm ${styles.stickyheader}`}
     >
       <div className="flex items-center gap-8 justify-between">
         <div>
@@ -58,16 +58,16 @@ const Header = () => {
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
-                <Link href="characters" legacyBehavior passHref>
+                <Link href="films" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Characters
+                    Films
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="films" legacyBehavior passHref>
+                <Link href="characters" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Films
+                    Characters
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
