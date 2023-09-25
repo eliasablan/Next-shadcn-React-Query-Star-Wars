@@ -6,15 +6,16 @@ import { getPlanet } from "@/lib/utils";
 const CharactersTableRow = ({ row }) => {
   const homeworldURL = row.getValue("homeworld");
   const homeworldId = homeworldURL.split("/")[5];
-  const { data } = useQuery({
+  const { data, status } = useQuery({
     queryKey: ["hydrate-planet", homeworldId],
     queryFn: () => getPlanet(homeworldId),
   });
 
-  if (!data) {
-    return <div className="capitalize">{row.getValue("homeworld")}</div>;
-  }
-  return <div className="capitalize">{data.name}</div>;
+  return (
+    <div className="capitalize">
+      {status === "success" ? data.name : "Loading"}
+    </div>
+  );
 };
 
 export default CharactersTableRow;

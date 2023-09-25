@@ -119,7 +119,7 @@ export const columns = [
 ];
 
 const CharactersTable = () => {
-  const { data } = useQuery({
+  const { data, status } = useQuery({
     queryKey: ["hydrate-characters"],
     queryFn: getCharacters,
   });
@@ -207,7 +207,7 @@ const CharactersTable = () => {
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows?.length ? (
+            {status === "success" ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
@@ -229,7 +229,7 @@ const CharactersTable = () => {
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  Loading data
                 </TableCell>
               </TableRow>
             )}
