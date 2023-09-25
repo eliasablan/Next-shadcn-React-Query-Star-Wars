@@ -35,8 +35,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import { getCharacters } from "@/lib/utils";
-import CharacterHomeworldCell from "@/components/tables/CharacterHomeworldCell";
+import { getPlanets } from "@/lib/utils";
 
 export const columns = [
   {
@@ -58,27 +57,47 @@ export const columns = [
     ),
   },
   {
-    accessorKey: "homeworld",
-    columnVisibilityName: "Homeworld",
+    accessorKey: "climate",
+    columnVisibilityName: "Climate",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Homeworld
+          Climate
           <CaretSortIcon className="ml-2 h-4 w-4" />
         </Button>
       );
     },
-    cell: ({ row }) => <CharacterHomeworldCell row={row} />,
+    cell: ({ row }) => (
+      <div className="capitalize mx-2">{row.getValue("climate")}</div>
+    ),
   },
   {
-    accessorKey: "birth_year",
-    columnVisibilityName: "Birth Year",
-    header: "Birth Year",
+    accessorKey: "terrain",
+    columnVisibilityName: "Terrain",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Terrain
+          <CaretSortIcon className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("birth_year")}</div>
+      <div className="capitalize mx-2">{row.getValue("terrain")}</div>
+    ),
+  },
+  {
+    accessorKey: "population",
+    columnVisibilityName: "Population",
+    header: "Population",
+    cell: ({ row }) => (
+      <div className="capitalize">{row.getValue("population")}</div>
     ),
   },
   {
@@ -86,7 +105,7 @@ export const columns = [
     enableHiding: false,
     header: "more",
     cell: ({ row }) => {
-      const characterName = row.getValue("name");
+      const planetName = row.getValue("name");
 
       return (
         <DropdownMenu>
@@ -99,9 +118,9 @@ export const columns = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(characterName)}
+              onClick={() => navigator.clipboard.writeText(planetName)}
             >
-              Copy character&apos;s name
+              Copy planet&apos;s name
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>View customer</DropdownMenuItem>
@@ -113,10 +132,10 @@ export const columns = [
   },
 ];
 
-const CharactersTable = () => {
+const PlanetsTable = () => {
   const { data, status } = useQuery({
-    queryKey: ["hydrate-characters"],
-    queryFn: getCharacters,
+    queryKey: ["hydrate-planets"],
+    queryFn: getPlanets,
   });
 
   const [sorting, setSorting] = useState([]);
@@ -259,4 +278,4 @@ const CharactersTable = () => {
   );
 };
 
-export default CharactersTable;
+export default PlanetsTable;

@@ -30,17 +30,17 @@ const Header = () => {
     {
       id: 1,
       name: "vehicles",
-      href: "#",
+      href: "vehicles",
     },
     {
       id: 2,
       name: "starships",
-      href: "#",
+      href: "starships",
     },
     {
       id: 3,
       name: "species",
-      href: "#",
+      href: "species",
     },
   ];
 
@@ -65,14 +65,14 @@ const Header = () => {
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="#" legacyBehavior passHref>
+                <Link href="films" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                     Films
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="#" legacyBehavior passHref>
+                <Link href="planets" legacyBehavior passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                     Planets
                   </NavigationMenuLink>

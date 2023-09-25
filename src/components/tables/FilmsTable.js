@@ -35,50 +35,69 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import { getCharacters } from "@/lib/utils";
-import CharacterHomeworldCell from "@/components/tables/CharacterHomeworldCell";
+import { getFilms } from "@/lib/utils";
 
 export const columns = [
   {
-    accessorKey: "name",
-    columnVisibilityName: "Name",
+    accessorKey: "title",
+    columnVisibilityName: "Title",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Name
+          Title
           <CaretSortIcon className="ml-2 h-4 w-4" />
         </Button>
       );
     },
     cell: ({ row }) => (
-      <div className="capitalize mx-2">{row.getValue("name")}</div>
+      <div className="capitalize mx-2">{row.getValue("title")}</div>
     ),
   },
   {
-    accessorKey: "homeworld",
-    columnVisibilityName: "Homeworld",
+    accessorKey: "episode_id",
+    columnVisibilityName: "Episode ID",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Homeworld
+          Espisode ID
           <CaretSortIcon className="ml-2 h-4 w-4" />
         </Button>
       );
     },
-    cell: ({ row }) => <CharacterHomeworldCell row={row} />,
+    cell: ({ row }) => (
+      <div className="capitalize mx-2">{row.getValue("episode_id")}</div>
+    ),
   },
   {
-    accessorKey: "birth_year",
-    columnVisibilityName: "Birth Year",
-    header: "Birth Year",
+    accessorKey: "director",
+    columnVisibilityName: "Director",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Director
+          <CaretSortIcon className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("birth_year")}</div>
+      <div className="capitalize mx-2">{row.getValue("director")}</div>
+    ),
+  },
+  {
+    accessorKey: "release_date",
+    columnVisibilityName: "Release Date",
+    header: "Release Date",
+    cell: ({ row }) => (
+      <div className="capitalize">{row.getValue("release_date")}</div>
     ),
   },
   {
@@ -86,7 +105,7 @@ export const columns = [
     enableHiding: false,
     header: "more",
     cell: ({ row }) => {
-      const characterName = row.getValue("name");
+      const planetName = row.getValue("name");
 
       return (
         <DropdownMenu>
@@ -99,9 +118,9 @@ export const columns = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(characterName)}
+              onClick={() => navigator.clipboard.writeText(planetName)}
             >
-              Copy character&apos;s name
+              Copy film&apos;s title
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>View customer</DropdownMenuItem>
@@ -113,10 +132,10 @@ export const columns = [
   },
 ];
 
-const CharactersTable = () => {
+const PlanetsTable = () => {
   const { data, status } = useQuery({
-    queryKey: ["hydrate-characters"],
-    queryFn: getCharacters,
+    queryKey: ["hydrate-films"],
+    queryFn: getFilms,
   });
 
   const [sorting, setSorting] = useState([]);
@@ -147,10 +166,10 @@ const CharactersTable = () => {
     <div className="w-full">
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter by name..."
-          value={table.getColumn("name")?.getFilterValue() ?? ""}
+          placeholder="Filter by title..."
+          value={table.getColumn("title")?.getFilterValue() ?? ""}
           onChange={(event) =>
-            table.getColumn("name")?.setFilterValue(event.target.value)
+            table.getColumn("title")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
@@ -259,4 +278,4 @@ const CharactersTable = () => {
   );
 };
 
-export default CharactersTable;
+export default PlanetsTable;
