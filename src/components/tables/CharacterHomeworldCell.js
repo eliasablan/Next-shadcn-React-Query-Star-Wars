@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { getPlanet } from "@/lib/utils";
 
-const CharactersTableRow = ({ row }) => {
+const CharacterHomeworldCell = ({ row }) => {
   const homeworldURL = row.getValue("homeworld");
   const homeworldId = homeworldURL.split("/")[5];
   const { data, status } = useQuery({
@@ -18,4 +18,4 @@ const CharactersTableRow = ({ row }) => {
   );
 };
 
-export default CharactersTableRow;
+export default CharacterHomeworldCell;

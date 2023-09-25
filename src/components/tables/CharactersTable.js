@@ -16,7 +16,6 @@ import {
 import { useQuery } from "@tanstack/react-query";
 
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -37,35 +36,30 @@ import {
 } from "@/components/ui/table";
 
 import { getCharacters } from "@/lib/utils";
-import HomeworldRow from "@/components/tables/HomeworldRow";
+import CharacterHomeworldCell from "@/components/tables/CharacterHomeworldCell";
 
 export const columns = [
   {
-    id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={table.getIsAllPageRowsSelected()}
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  },
-  {
     accessorKey: "name",
-    header: "Name",
-    cell: ({ row }) => <div className="capitalize">{row.getValue("name")}</div>,
+    columnVisibilityName: "Name",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Name
+          <CaretSortIcon className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => (
+      <div className="capitalize mx-2">{row.getValue("name")}</div>
+    ),
   },
   {
     accessorKey: "homeworld",
+    columnVisibilityName: "Homeworld",
     header: ({ column }) => {
       return (
         <Button
@@ -77,10 +71,11 @@ export const columns = [
         </Button>
       );
     },
-    cell: ({ row }) => <HomeworldRow row={row} />,
+    cell: ({ row }) => <CharacterHomeworldCell row={row} />,
   },
   {
     accessorKey: "birth_year",
+    columnVisibilityName: "Birth Year",
     header: "Birth Year",
     cell: ({ row }) => (
       <div className="capitalize">{row.getValue("birth_year")}</div>
@@ -91,7 +86,7 @@ export const columns = [
     enableHiding: false,
     header: "more",
     cell: ({ row }) => {
-      const payment = row.original;
+      const characterName = row.getValue("name");
 
       return (
         <DropdownMenu>
@@ -104,9 +99,9 @@ export const columns = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
+              onClick={() => navigator.clipboard.writeText(characterName)}
             >
-              Copy payment ID
+              Copy character name
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>View customer</DropdownMenuItem>
@@ -179,7 +174,7 @@ const CharactersTable = () => {
                       column.toggleVisibility(!!value)
                     }
                   >
-                    {column.id}
+                    {column.columnDef.columnVisibilityName}
                   </DropdownMenuCheckboxItem>
                 );
               })}

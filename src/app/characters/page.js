@@ -3,7 +3,7 @@ import getQueryClient from "@/lib/getQueryClient";
 import Hydrate from "@/lib/hydrate.client";
 import { dehydrate } from "@tanstack/react-query";
 
-import CharactersTable from "@/components/tables/Characters";
+import CharactersTable from "@/components/tables/CharactersTable";
 import { getCharacters } from "@/lib/utils";
 
 const Page = async () => {
