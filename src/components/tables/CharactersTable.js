@@ -35,7 +35,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import { getCharacters } from "@/lib/utils";
+import { getCharacters } from "@/utils/lib";
 import CharacterHomeworldCell from "@/components/tables/CharacterHomeworldCell";
 
 export const columns = [

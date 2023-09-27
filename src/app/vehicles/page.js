@@ -1,10 +1,10 @@
 import React from "react";
-import getQueryClient from "@/lib/getQueryClient";
-import Hydrate from "@/lib/hydrate.client";
+import getQueryClient from "@/utils/getQueryClient";
+import Hydrate from "@/utils/hydrate.client";
 import { dehydrate } from "@tanstack/react-query";
 
 import CharactersTable from "@/components/tables/CharactersTable";
-import { getCharacters } from "@/lib/utils";
+import { getCharacters } from "@/utils/lib";
 
 const Page = async () => {
   const queryClient = getQueryClient();

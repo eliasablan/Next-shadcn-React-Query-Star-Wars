@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 
-import styles from "../styles/Home.module.css";
+import styles from "../styles/Header.module.css";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -28,17 +28,14 @@ import {
 const Header = () => {
   const moreMenuOptions = [
     {
-      id: 1,
       name: "vehicles",
       href: "vehicles",
     },
     {
-      id: 2,
       name: "starships",
       href: "starships",
     },
     {
-      id: 3,
       name: "species",
       href: "species",
     },
@@ -116,19 +113,11 @@ const Header = () => {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              {moreMenuOptions.map((menuOption) => {
+              {moreMenuOptions.map((menuOption, index) => {
                 return (
-                  <>
-                    <DropdownMenuItem
-                      key={menuOption.id}
-                      className="capitalize"
-                    >
-                      {menuOption.name}
-                    </DropdownMenuItem>
-                    {menuOption.id < moreMenuOptions.length ? (
-                      <DropdownMenuSeparator />
-                    ) : null}
-                  </>
+                  <DropdownMenuItem key={index} className="capitalize">
+                    {menuOption.name}
+                  </DropdownMenuItem>
                 );
               })}
             </DropdownMenuContent>

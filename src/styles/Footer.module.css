@@ -1,0 +1,7 @@
+.footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 50;
+  background: hsl(var(--background));
+  color: hsl(var(--muted-foreground));
+}

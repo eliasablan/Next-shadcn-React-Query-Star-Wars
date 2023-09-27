@@ -34,7 +34,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import { getFilms } from "@/lib/utils";
+import { getFilms } from "@/utils/lib";
 
 export const columns = [
   {

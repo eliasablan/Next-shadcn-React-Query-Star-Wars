@@ -35,7 +35,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import { getPlanets } from "@/lib/utils";
+import { getPlanets } from "@/utils/lib";
 
 export const columns = [
   {

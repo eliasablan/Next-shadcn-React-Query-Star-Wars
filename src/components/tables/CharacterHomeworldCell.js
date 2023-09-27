@@ -1,7 +1,7 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
 
-import { getPlanet } from "@/lib/utils";
+import { getPlanet } from "@/utils/lib";
 
 const CharacterHomeworldCell = ({ row }) => {
   const homeworldURL = row.getValue("homeworld");
