@@ -4,14 +4,14 @@ import { Button } from "@/components/ui/button";
 export default function Page() {
   return (
     <Fragment>
-      <div className="block">
+      {/* <div className="block">
         <VariantButton variant="default" />
         <VariantButton variant="destructive" />
         <VariantButton variant="outline" />
         <VariantButton variant="secondary" />
         <VariantButton variant="ghost" />
         <VariantButton variant="link" />
-      </div>
+      </div> */}
     </Fragment>
   );
 }

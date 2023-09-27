@@ -106,7 +106,7 @@ const Header = () => {
             </NavigationMenuList>
           </NavigationMenu> */}
 
-          <DropdownMenu>
+          {/* <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className="ml-auto">
                 Tables <ChevronDownIcon className="ml-2 h-4 w-4" />
@@ -121,7 +121,7 @@ const Header = () => {
                 );
               })}
             </DropdownMenuContent>
-          </DropdownMenu>
+          </DropdownMenu> */}
 
           <ModeToggle />
         </div>
