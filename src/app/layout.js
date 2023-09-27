@@ -3,6 +3,7 @@ import "../styles/globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Providers from "@/utils/providers";
+import { Analytics } from "@vercel/analytics/react";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -22,6 +23,7 @@ export default function RootLayout({ children }) {
           <Header />
           <div className="max-w-5xl m-auto w-full p-4">
             {children}
+            <Analytics />
             <Footer />
           </div>
         </Providers>
